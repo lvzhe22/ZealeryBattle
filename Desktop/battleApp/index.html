@@ -11,14 +11,21 @@
     <div id="main" ng-controller='ctrl'>
       <ul id="productList">
 
-        {{productList[0].count}}
-
-        <button onclick="updateValue(0,0)"> New Data</button>
-
-
         <script>
 
-      createBattleItems(0,2);
+        createBattleItems(0,2);
+
+                  
+          var li1 = document.getElementById("product0");
+          var li2 = document.getElementById("product1");
+          li1.addEventListener('click', function() {
+            angular.element(document.getElementById("product" + 0)).scope().update(0);
+          });
+
+          li2.addEventListener('click', function() {
+            angular.element(document.getElementById("product" + 1)).scope().update(1);
+          });
+
           
         
 

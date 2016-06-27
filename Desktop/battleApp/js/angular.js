@@ -76,9 +76,9 @@ function createBattleItems(product1, product2) {
 //		else a uncaught type error will be thrown
 // post: The update function in the angular js is called, increasing the value of the 
 //		 count of the product with the given index 
-function updateValue(iIndex, pIndex) {
-	angular.element(document.getElementById("product" + iIndex)).scope().update(pIndex);
-}
+// function updateValue(iIndex, pIndex) {
+// 	angular.element(document.getElementById("product" + iIndex)).scope().update(pIndex);
+// }
 
 // This function searches the productList for products who have the same counts
 // and creates a battle between them. The algorithm is NOT PERMANENT.
