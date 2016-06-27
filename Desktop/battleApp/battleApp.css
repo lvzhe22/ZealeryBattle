@@ -15,25 +15,25 @@ img{
     max-width: 100%;
 }
 
-#product1 {
+#product0 {
 	margin-left: 240px;
 	margin-right: 20px;
 	border-radius: 6px;
 }
 
-#product1:hover {
+#product0:hover {
 	border: 2px solid #000;
 	border-bottom: 2px solid #000; 
 }
 
-#product2 {
+#product1 {
 	margin-left: 20px;
 	margin-right: 200px;
 	border-radius: 6px;
 
 }
 
-#product2:hover {
+#product1:hover {
 	border: 2px solid #000;
 	border-bottom: 2px solid #000;
 }

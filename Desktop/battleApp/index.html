@@ -1,32 +1,49 @@
 <!DOCTYPE html>
 <html ng-app="appOne">
   <head>
-  	<link rel="stylesheet" type="text/css" href="battleApp.css">
-  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-  	<script src="js/angular.js"></script>
-	
+    <link rel="stylesheet" type="text/css" href="battleApp.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="js/angular.js"></script>
+  
   </head>
   <body>
-  	<h1>Battle App</h1>
-  	<div id="main" ng-controller='ctrl'>
-  		<ul id="productList">
-  			<script>
-  				//createBattleItems(0,2);
+    <h1>Battle App</h1>
+    <div id="main" ng-controller='ctrl'>
+      <ul id="productList">
 
-				window.onload = function () {
-					var playAgain = true;
-					var productList = angular.element(document.getElementById('main')).scope().productList;
-					while(playAgain) {
-	  					playAgain = chooseBattleItems(productList, playAgain);
-	  					// wait till update value is called
-	  				}
-				};
-	  			//showFinishScreen();
-  				
-  			</script>
-  		</ul>
-  	</div>  
+        {{productList[0].count}}
 
-  	
+        <button onclick="updateValue(0,0)"> New Data</button>
+
+
+        <script>
+
+      createBattleItems(0,2);
+          
+        
+
+          //chooseBattleItems(0);
+
+          //incSecond();
+
+          //figure out product length
+          // figure out stop script until
+        // window.onload = function () {
+          // var playAgain = 0;
+          // // This calls choose battle items on each pair of products in the product list. Essentially,
+          // // the first two products do battle, the second two, and so on untill every product has been tried.
+          // while(playAgain < 4) {
+          //     chooseBattleItems(playAgain);
+          //     playAgain += 2;
+          //     // wait till update value is called
+          //   }  
+        // };
+          // showFinishScreen();
+          
+        </script>
+      </ul>
+    </div>  
+
+    
   </body>
 </html>
