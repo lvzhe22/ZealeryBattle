@@ -34,10 +34,22 @@ app.controller('ctrl', function($scope) {
 	// This Function increases the count of a product by 1
 	$scope.update = function(pIndex) {
 		$scope.productList[pIndex].count = (+$scope.productList[pIndex].count + 1);
-		console.log($scope.productList[pIndex].count);
-		
-		$scope.data = (+$scope.data + 1); 
+		console.log($scope.productList[pIndex].count);		
+		$scope.data = (+$scope.data + 1);
 	}
+
+	$scope.currentLeftText = "helloLeft";
+	$scope.currentRightText = "helloright";
+
+	$scope.getImages = function(lpIndex, rpIndex) {
+		$scope.currentLeftImage = $scope.productList[lpIndex].img;
+		$scope.currentRightImage = $scope.productList[rpIndex].img;
+	}
+
+	$scope.getText = function(lpIndex, rpIndex) {
+		$scope.currentLeftText = $scope.productList[lpIndex].name;
+		$scope.currentRightText = $scope.productList[rpIndex].name;
+	}	
 
 });
 
@@ -49,6 +61,7 @@ function createBattleItems(product1, product2) {
 	var li;
 	var img;
 	var text;	
+	angular.element(document.getElementById("main")).scope().getText(0,2);
 
 	for(index in arguments) {
 		li = document.createElement('li');
@@ -58,13 +71,24 @@ function createBattleItems(product1, product2) {
 
 		img = document.createElement('img');
 		img.src = "{{ productList[" + arguments[index] + "].img }}";
-		// img.ng-click = "updateValue(" +  arguments[index] + ")";
+		if(index == 0) {
+			img.src = "{{currentLeftImage}}";	
+		} else {
+			img.src = "{{currentRightImage}}";	
+		}
+		//img.class = "ng-click = \"console.log(\"hello\");	\";"
+		//img.class = "ng-click = \"updateValue(" +  arguments[index] + ")\";"
 		img.onClick = "chooseBattleItems(productList, playAgain)";
 
 		text = document.createElement('p');
-		text.appendChild(document.createTextNode("{{ productList[" + arguments[index] + "].name }}"))
+		//if(index == 0) {
+			text.appendChild(document.createTextNode("{{currentRightText}}"));
+		// } else {
+		// 	text.appendChild(document.createTextNode("{{currentLeftText}}"));
+		// }
 		
 		li.appendChild(img);
+		console.log(text);
 		li.appendChild(text);
 		ul.appendChild(li)
 	}
@@ -112,6 +136,10 @@ function clearScreen() {
 	while(ul.firstChild) {
 		ul.removeChild(ul.firstChild);
 	}
+}
+
+function getText(i1,i2) {
+	angular.element(document.getElementById("main")).scope().getText(i1,i2); 
 }
 
 

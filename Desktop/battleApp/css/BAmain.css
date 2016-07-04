@@ -13,12 +13,16 @@ img{
     background-size: cover;
     max-height: 100%;
     max-width: 100%;
+    margin: 10px;
 }
 
 #product0 {
 	margin-left: 240px;
 	margin-right: 20px;
-	border-radius: 6px;
+	border-radius: 20px;
+	background: white;
+	border: 1px solid #000;
+	border-bottom: 2px solid #000;
 }
 
 #product0:hover {
@@ -29,7 +33,10 @@ img{
 #product1 {
 	margin-left: 20px;
 	margin-right: 200px;
-	border-radius: 6px;
+	border-radius: 20px;
+	background: white;
+	border: 1px solid #000;
+	border-bottom: 2px solid #000;
 
 }
 
