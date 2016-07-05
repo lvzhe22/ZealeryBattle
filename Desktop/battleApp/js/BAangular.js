@@ -3,8 +3,8 @@ var app = angular.module('appOne', []);
 app.controller('ctrl', function($scope) {
 
 	$scope.listItems = 2; // number of products on screen
-
-	$scope.productsOnScreen = [$scope.listItems]; // Initialize Array containing products on screen
+	
+	$scope.i = 2;
 
 	$scope.productList = [ // Proxy List of Products
 		productOne = {
@@ -36,13 +36,29 @@ app.controller('ctrl', function($scope) {
 		}
 	]; 
 
+	$scope.displayWhenFinished = {
+		name : "Congratulations!",
+		image : "http://emojipedia-us.s3.amazonaws.com/cache/09/36/093609b96d67b99f68fc329a9b2aff6f.png",
+		index : -1,
+		count : 0
+	}
+
+	$scope.productsOnScreen = [$scope.listItems]; // Initialize Array containing products on screen
+
+	$scope.productsOnScreen = [$scope.productList[0], $scope.productList[1]]; 
+
+
 	// This function increases the count of the chosen product by 1 and loads a new set of products to choose from
 	// pre: index must be >= 0 and < productList.length
 	// post: A new group of products will be displayed to choose from and the clicked upon product will have a count increased by 1  
 	$scope.update = function(index) {
-		$scope.productList[index].count = (+$scope.productList[index].count + 1);
-		$scope.chooseProducts(2,3);
-		console.log($scope.productList[index].name + ": " + $scope.productList[index].count);
+		 if($scope.i < $scope.productList.length) {
+		 	$scope.productList[index].count = (+$scope.productList[index].count + 1);
+			$scope.chooseProducts($scope.i, +$scope.i + 1);
+			$scope.i = (+$scope.i + 2);
+		} else {
+			$scope.productsOnScreen = [$scope.displayWhenFinished, $scope.displayWhenFinished];
+		}
 	}
 
 	// This function changes the products stored in the productsOnScreen array to the product indeces passed
@@ -53,3 +69,5 @@ app.controller('ctrl', function($scope) {
 	}
 
 });
+
+
