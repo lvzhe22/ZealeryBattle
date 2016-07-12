@@ -1,0 +1,146 @@
+/* Empty. Add your own CSS if you like */
+
+body{
+	/*background: url("http://eskipaper.com/images/fashion-background-1.jpg");
+	background-repeat: repeat-y;
+	background-size: 1400px auto; */
+}
+
+div {
+
+}
+
+img{
+	position: relative;
+    float: left;
+    width: 150px;
+    height: 225px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    max-width: 100%;
+    margin: 10px;
+}
+
+#product0 {
+	margin-right: 115px;
+	border-radius: 20px;
+	background: white;
+	border: 1px solid #000;
+	border-bottom: 2px solid #000;
+}
+
+#product0:hover {
+	border: 2px solid #000;
+	border-bottom: 2px solid #000; 
+}
+
+#product1 {
+	margin-left: 115px;
+	border-radius: 20px;
+	background: white;
+	border: 1px solid #000;
+	border-bottom: 2px solid #000;
+
+}
+
+#product1:hover {
+	border: 2px solid #000;
+	border-bottom: 2px solid #000;
+}
+
+#hugLeft {
+	height: 20px;
+	width: 200px; 
+	display: inline-block;
+}
+
+#hugRight {
+	text-align: right; 
+	padding: 0px; 
+	display: inline-block;
+}
+
+#exitButton {
+	height: 30px; 
+	width: 30px; 
+	margin-top: 5px; 
+	margin-left: 10px; 
+	font-size: 20px; 
+	display: inline-block;
+}
+
+#timer {
+	font-size: 35px;
+	border: 2px solid blue;
+	border-radius: 38px;
+	width: 75px;
+}
+
+#timerList {
+	line-height: 75px;
+	height: 75px;
+	position: absolute;
+	left: 0;
+	top: 75px;	
+}
+
+#moves {
+
+	width: 200px; 
+	height: 40px; 
+	display: inline-block; 
+	text-align: right;
+}
+
+#score {
+	width: 200px; 
+	height: 40px; 
+	display: inline-block; 
+	text-align: right;
+}
+
+#profPic {
+	height: 20px; 
+	width: 20px; 
+	display: inline-block;
+}
+
+#profName {
+	height: 20px; 
+	width: 200px; 
+	text-align: left; 
+	display: inline-block;
+}
+
+.ul {
+    width: 100%;
+    text-align:center;
+}
+
+.li {
+    display:inline-block;
+    *display:inline; /*IE7*/
+    *zoom:1; /*IE7*/
+    background:white;
+}
+
+
+
+/*p{
+	text-align: center;
+	font-size: 40px;
+	font-style: italic;
+	font-variant: small-caps;
+	font-family: arial;
+}*/
+
+h1 {
+	text-align: left;
+	font-size: 40px;
+	font-style: italic;
+	font-variant: small-caps;
+	font-family: arial;
+	color: blue;
+}
