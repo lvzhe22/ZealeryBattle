@@ -48,25 +48,75 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
     count : 0
   };
 
-  $scope.productsOnScreen = [$scope.listItems]; // Initialize Array containing products on screen
-
-  $scope.productsOnScreen = [$scope.productList[0], $scope.productList[1]]; 
-
-
-  // This function increases the count of the chosen product by 1 and loads a new set of products to choose from
-  // pre: index must be >= 0 and < productList.length
-  // post: A new group of products will be displayed to choose from and the clicked upon product will have a count increased by 1  
-  $scope.update = function(index) {
-    if($scope.i < $scope.productList.length) {
-      $scope.productList[index].count = (+$scope.productList[index].count + 1);
-      $scope.chooseProducts($scope.i, +$scope.i + 1);
-      $scope.i = (+$scope.i + 2);
-      $scope.time = 10
-    } else {
-      $scope.productsOnScreen = [$scope.displayWhenFinished, $scope.displayWhenFinished];
-      console.log("index: " + $scope. i);
-    }
+  $scope.displayWhenFinished2 = {
+    name : "Congratulations!",
+    image : "http://emojipedia-us.s3.amazonaws.com/cache/09/36/093609b96d67b99f68fc329a9b2aff6f.png",
+    index : -2,
+    count : 0
   };
+
+  // HEADER DATA
+
+  // USER DATA
+  $scope.name = "johndoe";
+
+  $scope.profilePicture = "https://lh6.googleusercontent.com/-w8N1cF25Qe8/AAAAAAAAAAI/AAAAAAAAMzk/oeCTIYO_9PM/photo.jpg";
+
+  $scope.score = 150;
+
+  $scope.moves = +$scope.productList.length / 2;
+
+  // This function is called when the user taps the exit button in the upper right corner
+  $scope.exit = function() {
+    console.log("exit clicked");
+    $scope.battleStarted = false;
+    $scope.battleFinished = false;
+  };
+
+  // PRE-BATTLE SCREEN
+  // This function builds an array of products that will be displayed before the battle starts
+  $scope.preBattleScreen = function() {
+    $scope.productsInBattle = [2]; // Initialize array of prescreen product display
+    if($scope.productList.length < 4) {
+      $scope.productsInBattle = [$scope.productList.length];
+      for(product in $scope.productList) {
+        $scope.productsInBattle[product] = $scope.productList[product];
+      }
+    } else {
+      for(i in [0, 1]) {
+        $scope.productsInBattle[i] = $scope.productList[i];
+      }
+      $scope.productsInBattle[2] = $scope.displayWhenFinished; // Change of a +N image
+    }
+  }
+
+  // This function is called to show the battle screen,
+  // hide the prebattle screen and begin the battle clock
+  $scope.startBattle = function() {
+    $scope.battleStarted = true;
+    $scope.battleFinished = false;
+    $scope.time = 10;
+    $scope.chooseProducts(0,1);
+    $scope.i = 2;
+    $scope.moves = +$scope.productList.length / 2;
+    $scope.productsOnScreen = [$scope.productList[0], $scope.productList[1]];
+  }
+
+  // This function reduces the battle clock by one each second
+  // while all products have not been cycled through 
+  $interval(function() {
+    if(!$scope.battleFinished && $scope.battleStarted) {
+      $scope.time = +$scope.time - 1;
+      if($scope.time == 0) {
+        if($scope.i < $scope.productList.length) {
+          $scope.newMove();
+        } else {
+          $scope.battleFinished = true;
+          $scope.battleOver();
+        }
+      }
+    }
+  }, 1000);
 
   // This function changes the products stored in the productsOnScreen array to the product indeces passed
   // pre: all the indeces passed must be >= 0 and < productList.length and none of them can be the same index
@@ -75,79 +125,46 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
     $scope.productsOnScreen = [$scope.productList[p1], $scope.productList[p2]];
   };
 
-  $scope.productsInBattle = [5];
+  // This function increases the count of the chosen product by 1 and loads a new set of products to choose from
+  // pre: index must be >= 0 and < productList.length
+  // post: A new group of products will be displayed to choose from and the clicked upon product will have a count increased by 1  
+  $scope.update = function(product) {
+    var index = $scope.productList.indexOf(product);
+    $scope.productList[index].count = (+$scope.productList[index].count + 1);
+    console.log("index: " + index + "\n product:" + product.name);
+    if($scope.i < $scope.productList.length) {
+      $scope.newMove();     
+    } else {
+      $scope.battleOver();
+      $scope.battleFinished = true;
 
-  if($scope.productList.length < 6) {
-    $scope.productsInBattle = [$scope.productList.length];
-    for(product in $scope.productList) {
-      $scope.productsInBattle[product] = $scope.productList[product];
-      
     }
-
-  } else {
-
-  }
-  
-
-  // USER INFO
-  $scope.name = "johndoe";
-
-  $scope.profilePicture = "https://lh6.googleusercontent.com/-w8N1cF25Qe8/AAAAAAAAAAI/AAAAAAAAMzk/oeCTIYO_9PM/photo.jpg";
-
-  $scope.score = 150;
-
-  // THIS BATTLE INFO
-  $scope.moves = 10;
-
-  $scope.battleStarted = false ;
-
-  $battleFinished = false;
-
-  // This function is called to show the battle screen,
-  // hide the prebattle screen and begin the battle clock
-  $scope.startBattle = function() {
-    $scope.battleStarted = true;
-    $scope.time = 10;
-    $scope.i = 2;
-    $scope.chooseProducts(0,1);
-
-  }
-
-  $scope.time = 10; // Initialize battle clock
-
-  // This function is called when the user taps the exit button
-  $scope.exit = function() {
-    console.log("exit clicked");
-    $scope.battleStarted = false;
   };
 
-  // This function reduces the battle clock by one each second
-  // while all products have not been cycled through 
-  $interval(function() {
-    if(!$scope.battleFinished) {
-      $scope.time = +$scope.time - 1;
-    }
-  }, 1000);
+  $scope.newMove = function() {
+    $scope.time = 10;
+    $scope.moves = +$scope.moves - 1;
+    $scope.chooseProducts($scope.i, +$scope.i + 1);
+    $scope.i = (+$scope.i + 2);
+  };
 
-  // This function moves the battle to the next move when they run out of time
-  // as well as shows the finish screen and stops the timer when the battle is over.
-  $interval(function() {
-    if(!$scope.battleFinished) {
-      if($scope.i < $scope.productList.length) {
-        $scope.chooseProducts($scope.i, +$scope.i + 1);
-        $scope.i = +$scope.i + 2;
-        $scope.time= 10;
-      } else {
-        $scope.battleFinished = true;
-        $scope.time = 0;
-        $scope.productsOnScreen = [$scope.displayWhenFinished, $scope.displayWhenFinished];
-      }
-    }
-  }, 10000); 
+  $scope.battleOver = function() {
+    $scope.time = 0;
+    $scope.moves = +$scope.moves - 1;
+    $scope.productsOnScreen = [$scope.displayWhenFinished, $scope.displayWhenFinished2];
 
-
+  }
 
 }]);
+
+
+
+
+  
+
+
+
+
 
  
 
