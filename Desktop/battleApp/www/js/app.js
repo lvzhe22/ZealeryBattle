@@ -7,6 +7,7 @@ var app = angular.module('starter', ['ionic']);
 
 app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
 
+  // Pre-Sets
   $scope.listItems = 2; // number of products on screen
   
   $scope.i = 2;
@@ -55,6 +56,13 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
     count : 0
   };
 
+  $scope.dummyProduct = {
+    name: "extra products",
+    image: "http://dummyimage.com/200x150/91fffb/fff.png&text=0x2B" + (+$scope.productList.length - 2),
+    index: -3,
+    count: 0
+  }
+
   // HEADER DATA
 
   // USER DATA
@@ -86,7 +94,7 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
       for(i in [0, 1]) {
         $scope.productsInBattle[i] = $scope.productList[i];
       }
-      $scope.productsInBattle[2] = $scope.displayWhenFinished; // Change of a +N image
+      $scope.productsInBattle[2] = $scope.dummyProduct; // Change of a +N image
     }
   }
 
@@ -156,17 +164,6 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
   }
 
 }]);
-
-
-
-
-  
-
-
-
-
-
- 
 
 // app.run(function($ionicPlatform) {
 //   $ionicPlatform.ready(function() {

@@ -25,31 +25,31 @@ img{
 
 #product0 {
 	margin-right: 115px;
-	border-radius: 20px;
+	/*border-radius: 20px;
 	background: white;
 	border: 1px solid #000;
-	border-bottom: 2px solid #000;
+	border-bottom: 2px solid #000;*/
 }
 
-#product0:hover {
+/*#product0:hover {
 	border: 2px solid #000;
 	border-bottom: 2px solid #000; 
 }
-
+*/
 #product1 {
 	margin-left: 115px;
-	border-radius: 20px;
+/*	border-radius: 20px;
 	background: white;
 	border: 1px solid #000;
 	border-bottom: 2px solid #000;
-
+*/
 }
 
-#product1:hover {
+/*#product1:hover {
 	border: 2px solid #000;
 	border-bottom: 2px solid #000;
 }
-
+*/
 #hugLeft {
 	height: 20px;
 	width: 200px; 
@@ -69,6 +69,9 @@ img{
 	margin-left: 10px; 
 	font-size: 20px; 
 	display: inline-block;
+	border: none;
+	background-color: cyan;
+	color: white;
 }
 
 #timer {
@@ -92,6 +95,8 @@ img{
 	height: 40px; 
 	display: inline-block; 
 	text-align: right;
+	color: white;
+	border-bottom: 1px;
 }
 
 #score {
@@ -99,6 +104,7 @@ img{
 	height: 40px; 
 	display: inline-block; 
 	text-align: right;
+	color: white;
 }
 
 #profPic {
@@ -112,6 +118,18 @@ img{
 	width: 200px; 
 	text-align: left; 
 	display: inline-block;
+	color: white;
+}
+
+#startButton {
+	border: none;
+	width: 80%; 
+	height: 40px; 
+	position: center;
+	padding: 5px;
+	margin: 5px;
+	background-color: cyan;
+	color: white;
 }
 
 .ul {
@@ -126,7 +144,9 @@ img{
     background:white;
 }
 
-
+#header {
+	background-color: cyan;
+}
 
 /*p{
 	text-align: center;

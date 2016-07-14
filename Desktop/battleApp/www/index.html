@@ -29,7 +29,7 @@
 
     <!-- Below is the HTML Setup for the Header Bar-->
 
-      <ion-header-bar class="bar-stable">
+      <ion-header-bar id="header" class="bar-stable">
         <h1 class="title">
           <div id="hugLeft">
             <img src="{{profilePicture}}" id="profPic">
@@ -73,7 +73,7 @@
         <!-- Below is the HTML for the Pre Battle Screen -->
         <div ng-show="!battleStarted" style="text-align: center;">
           {{preBattleScreen()}}
-          <button ng-click="startBattle()" style="width: 80%; height: 20px; position: center;">Battlee Start!!</button>
+          <button ng-click="startBattle()" id="startButton">Battlee Start!!</button>
           <ion-list>
             <ion-item ng-repeat="product in productsInBattle track by $index" style="display: inline-block">
               <img src="{{product.image}}">
