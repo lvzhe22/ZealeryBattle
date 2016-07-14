@@ -66,7 +66,7 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
   // HEADER DATA
 
   // USER DATA
-  $scope.name = "johndoe";
+  $scope.name = "John Doe";
 
   $scope.profilePicture = "https://lh6.googleusercontent.com/-w8N1cF25Qe8/AAAAAAAAAAI/AAAAAAAAMzk/oeCTIYO_9PM/photo.jpg";
 

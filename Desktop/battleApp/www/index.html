@@ -30,7 +30,7 @@
     <!-- Below is the HTML Setup for the Header Bar-->
 
       <ion-header-bar id="header" class="bar-stable">
-        <h1 class="title">
+        <h1 id="subheader"class="title">
           <div id="hugLeft">
             <img src="{{profilePicture}}" id="profPic">
             <div id="profName"><p>{{name}}</p></div>
@@ -52,7 +52,9 @@
       <ion-content>
 
         <!-- Below is the HTML for the In Battle Screen -->
-        <div ng-show="battleStarted && !battleFinished">
+        <div id="battleScreen" ng-show="battleStarted && !battleFinished">
+          <div id="spacer"></div>
+          <!-- Products in Battle -->
           <div>
             <ion-list class="ul">
               <ion-item class="li" ng-repeat="product in productsOnScreen track by $index" ng-click="update(product)" id="product{{productsOnScreen.indexOf(product)}}">
@@ -61,6 +63,7 @@
             </ion-list>
           </div>
           
+          <!--Timer -->
           <div>
             <ion-list id="timerList" class="ul">
               <ion-item id="timer" class="li">
@@ -83,6 +86,7 @@
 
         <!-- Below is the HTML for the Post Battle Screen -->
         <div ng-show="battleFinished" style="text-align: center;">
+          <div id="spacer"></div>
           <div>
             <ion-list>
               <ion-item ng-repeat="product in productList track by $index">
