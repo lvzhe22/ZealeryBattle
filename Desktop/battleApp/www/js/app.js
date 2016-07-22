@@ -15,28 +15,28 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
   $scope.productList = [ // Proxy List of Products
     productOne = {
       name : "Plain White T",
-      image : "https://metrouk2.files.wordpress.com/2013/07/gapcopy.jpg",
+      image : "img/image1.jpg",
       index : 0,
       count : 0
     }, 
 
     productTwo = {
       name : "V-Neck T-Shirt",
-      image : "http://www.customink.com/mms/images/catalog/styles/161700/catalog_detail_image_large.jpg",
+      image : "img/image2.jpg",
       index : 1,
       count : 0
     },
 
     productThree = {
       name : "Flannel Shirt",
-      image : "http://s5.thisnext.com/media/largest_dimension/57339101.jpg",
+      image : "img/image3.jpg",
       index : 2,
       count : 0
     },
 
     productFour = {
       name : "Long-Sleeve Shirt",
-      image : "http://www.dryshirt.com/merchant5/graphics/00000002/DRYSHIRT-%20Long%20sleeve%20Kore%20Dry%20Red%20LRG.jpg",
+      image : "img/image4.jpg",
       index : 3,
       count : 0
     }
@@ -44,21 +44,21 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
 
   $scope.displayWhenFinished = {
     name : "Congratulations!",
-    image : "http://emojipedia-us.s3.amazonaws.com/cache/09/36/093609b96d67b99f68fc329a9b2aff6f.png",
+    image : "img/image-1.jpg",
     index : -1,
     count : 0
   };
 
   $scope.displayWhenFinished2 = {
     name : "Congratulations!",
-    image : "http://emojipedia-us.s3.amazonaws.com/cache/09/36/093609b96d67b99f68fc329a9b2aff6f.png",
+    image : "img/image-1.jpg",
     index : -2,
     count : 0
   };
 
   $scope.dummyProduct = {
     name: "extra products",
-    image: "http://dummyimage.com/200x150/91fffb/fff.png&text=0x2B" + (+$scope.productList.length - 2),
+    image: "http://dummyimage.com/150x200/91fffb/fff.png&text=0x2B+" + (+$scope.productList.length - 2),
     index: -3,
     count: 0
   }
@@ -68,7 +68,7 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
   // USER DATA
   $scope.name = "John Doe";
 
-  $scope.profilePicture = "https://lh6.googleusercontent.com/-w8N1cF25Qe8/AAAAAAAAAAI/AAAAAAAAMzk/oeCTIYO_9PM/photo.jpg";
+  $scope.profilePicture = "img/image0.jpg";
 
   $scope.score = 150;
 

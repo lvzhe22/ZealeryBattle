@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "54080209736",
+    "firebase_url": "https://taxicabapp.firebaseio.com",
+    "project_id": "firebase-taxicabapp",
+    "storage_bucket": "firebase-taxicabapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:54080209736:android:463502bec67e1fee",
+        "android_client_info": {
+          "package_name": "com.vasco.varun.prayground"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "54080209736-um1uijommst7tlk9g7t704pvhlnk9msr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJEO3bpANHUd46vqMHkTuKaQ5RVeGkxAw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
