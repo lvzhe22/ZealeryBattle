@@ -56,9 +56,9 @@ h1 {
 /* Header Elements hugging Left Side of Header Bar */
 #hugLeft {
 	position: relative;
-  	top: 50%;
+  	top: 20px;
   	transform: translateY(-50%);
-	height: 80%;
+	height: 75%;
 	max-width: 100%; 
 	display: inline-block;
 	text-align: left;
@@ -86,7 +86,7 @@ h1 {
 /* Header Elements hugging Right Side of Header Bar */
 #hugRight {
 	position: relative;
-  	top: 50%;
+  	top: 20px;
   	transform: translateY(-50%);
 	height: 80%;
 	max-width: 100%; 
