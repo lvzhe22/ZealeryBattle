@@ -59,6 +59,7 @@
             <ion-list class="ul">
               <ion-item class="li" ng-repeat="product in productsOnScreen track by $index" ng-click="update(product)" id="product{{productsOnScreen.indexOf(product)}}">
                 <img src="{{product.image}}" class="inBattleImage">
+                {{dimensions()}}
               </ion-item>
             </ion-list>
           </div>

@@ -108,7 +108,6 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
     $scope.i = 2;
     $scope.moves = +$scope.productList.length / 2;
     $scope.productsOnScreen = [$scope.productList[0], $scope.productList[1]];
-
   }
 
   // This function reduces the battle clock by one each second
@@ -116,7 +115,6 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
   $interval(function() {
     if(!$scope.battleFinished && $scope.battleStarted) {
       $scope.time = +$scope.time - 1;
-      $scope.sendData();
       if($scope.time == 0) {
         if($scope.i < $scope.productList.length) {
           $scope.newMove();
@@ -167,24 +165,61 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
 
   }
 
-  $scope.sendData = function() {
-    console.log(document.getElementById('product0').style);
+  $scope.resizeTimer = function(x, timer) {
+    //timer.style.fontSize = x + 'px';
+    console.log(x);
+    timer.style.height = (x) + 'px';
+    timer.style.width = (x) + 'px';
+    timer.style.borderRadius = (x) + 'px';
+    timer.style.lineHeight = (x - 4) + 'px';
+  }
+
+  $scope.dimensions = function() {
+    var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    var height = (window.innerHeight > 0) ? window.innerHeight : screen.height;
+    var images = document.getElementsByClassName("inBattleImage");
+    var timer = document.getElementById("timerList");
+    var p0 = document.getElementById('product0');
+    var p1 = document.getElementById('product1');
+
+    timer.style.top = 85 + 'px';
+    $scope.resizeTimer(100 , document.getElementById('timer'));
+    p0.style.marginRight = 70 + 'px';
+    p1.style.marginLeft = 70 + 'px';
+    for(i = 0; i < images.length; i++) {
+      images[i].style.height = 210 + 'px';
+      images[i].style.width = 140 + 'px';
+    }
+
+    if(width > 600) {
+      timer.style.top = 30 + 135 - 50 + 'px';
+      p0.style.marginRight = 75 + 'px';
+      p1.style.marginLeft = 75 + 'px';
+      for(i = 0; i < images.length; i++) {
+        images[i].style.height = 270 + 'px';
+        images[i].style.width = 180 + 'px';
+      }
+
+      if(height > 500) {
+        timer.style.top = 30 + 375/2 - 125/2 + 'px';
+        $scope.resizeTimer(2 * 2 * 125 /3, document.getElementById('timer'));
+        p0.style.marginRight = 125 + 'px';
+        p1.style.marginLeft = 125 + 'px';
+        for(i = 0; i < images.length; i++) {
+          images[i].style.height = 375 + 'px';
+          images[i].style.width = 250 + 'px';
+        }
+      }
+
+    }
+
+
   }
 
 
 
 
 
-
-
-  // $scope.resizeTimer = function(x, timer) {
-  //     timer.style.fontSize = x + 'px';
-  //     timer.style.height = (3.5 * x) + 'px';
-  //     timer.style.width = (3.5 * x) + 'px';
-  //     timer.style.borderRadius = ( 3.5 * x) + 'px';
-  //     timer.style.lineHeight = (2 * x) + 'px';
-
-  //   }
 
   // This function allows the images to scale depending on the screen
   // $scope.dimensions = function() {

@@ -159,19 +159,19 @@ h1 {
 }
 
 #timer {
-	font-size: 17px;
+	font-size: 30px;
 	border: 2px solid #6FCEFB;
-	border-radius: 70px;
-	width: 70px;
-	height: 70px;
-	vertical-align: middle;
-	line-height: 17px;
+	border-radius: 100px;
+	width: 100px;
+	height: 100px;
+	line-height: 96px;
+	padding: 0px;
 }
 
 #timerList {
 	position: absolute;
 	left: 0;
-	top: 80px;	
+	top: 85px; /*spacer + heightimg/2 -height timer /2 */	
 }
 
 .ul {
