@@ -5,16 +5,34 @@
    Foreground Color: #FFFFFF; WHITE
 */
 
-img{
+.preBattleImage {
 	position: relative;
     float: left;
-    width: 150px;
-    height: 225px;
+    width: 140px; 
+    height: 210px;
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: cover;
+    margin: 0px;
+    padding: 0px;
     max-width: 100%;
-    margin: 10px;
+}
+
+.item{
+	padding: 7.5px;
+}
+
+.inBattleImage{
+	position: relative;
+    float: left;
+    width: 140px; 
+    height: 210px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0px;
+    padding: 0px;
+    max-width: 100%;
 }
 
 
@@ -28,6 +46,7 @@ h1 {
 
 #header {
 	background-color: #6FCEFB;
+	height: 40px;
 }
 
 #subheader {
@@ -60,7 +79,7 @@ h1 {
 	display: inline-block;
 	color: white;
 	border-radius: 5px;
-	padding: 0px 70px;
+	padding: 0px 15px;
 	background-color: #B0D8FD;
 }
 
@@ -83,7 +102,7 @@ h1 {
 	color: white;
 	border-radius: 5px;
 	background-color: #B0D8FD;
-	padding: 0px 30px;
+	padding: 0px 15px;
 }
 
 #score {
@@ -94,8 +113,8 @@ h1 {
 	color: white;
 	border-radius: 5px;
 	background-color: #B0D8FD;
-	padding: 0px 30px;
-	margin-left: 40px; 
+	padding: 0px 15px;
+	/*margin-left: 40px;*/ 
 }
 
 #exitButton {
@@ -114,47 +133,45 @@ h1 {
 #startButton {
 	border: none;
 	width: 80%; 
-	height: 40px; 
+	height: 30px; 
 	position: center;
-	padding: 5px;
 	margin: 5px;
 	background-color: #6FCEFB;
 	color: white;
 }
 
 /* In Battle Screen */
-#battleScreen {
-
-}
 
 #spacer {
-	height: 50px;
+	height: 30px;
 }
 
 #product0 {
-	margin-right: 115px;
+	padding: 0px;
+	margin-right: 70px;
+	margin-left: 0px;
 }
 
 #product1 {
-	margin-left: 115px;
+	padding: 0px;
+	margin-right: 0px;
+	margin-left: 70px;
 }
 
 #timer {
-	font-size: 35px;
+	font-size: 17px;
 	border: 2px solid #6FCEFB;
-	border-radius: 125px;
-	width: 125px;
-	height: 125px;
+	border-radius: 70px;
+	width: 70px;
+	height: 70px;
 	vertical-align: middle;
-	line-height: 250%;
+	line-height: 17px;
 }
 
 #timerList {
-	line-height: 75px;
-	height: 75px;
 	position: absolute;
 	left: 0;
-	top: 135px;	
+	top: 80px;	
 }
 
 .ul {

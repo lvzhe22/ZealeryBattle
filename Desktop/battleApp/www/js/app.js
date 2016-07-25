@@ -108,6 +108,7 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
     $scope.i = 2;
     $scope.moves = +$scope.productList.length / 2;
     $scope.productsOnScreen = [$scope.productList[0], $scope.productList[1]];
+
   }
 
   // This function reduces the battle clock by one each second
@@ -115,6 +116,7 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
   $interval(function() {
     if(!$scope.battleFinished && $scope.battleStarted) {
       $scope.time = +$scope.time - 1;
+      $scope.sendData();
       if($scope.time == 0) {
         if($scope.i < $scope.productList.length) {
           $scope.newMove();
@@ -149,6 +151,7 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
     }
   };
 
+  // This function is called every time a new move begins
   $scope.newMove = function() {
     $scope.time = 10;
     $scope.moves = +$scope.moves - 1;
@@ -156,6 +159,7 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
     $scope.i = (+$scope.i + 2);
   };
 
+  // This function is called every time the player runs out of moves
   $scope.battleOver = function() {
     $scope.time = 0;
     $scope.moves = +$scope.moves - 1;
@@ -163,7 +167,81 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
 
   }
 
+  $scope.sendData = function() {
+    console.log(document.getElementById('product0').style);
+  }
+
+
+
+
+
+
+
+  // $scope.resizeTimer = function(x, timer) {
+  //     timer.style.fontSize = x + 'px';
+  //     timer.style.height = (3.5 * x) + 'px';
+  //     timer.style.width = (3.5 * x) + 'px';
+  //     timer.style.borderRadius = ( 3.5 * x) + 'px';
+  //     timer.style.lineHeight = (2 * x) + 'px';
+
+  //   }
+
+  // This function allows the images to scale depending on the screen
+  // $scope.dimensions = function() {
+  //   var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+  //   var height = (window.innerHeight > 0) ? window.innerHeight : screen.height;
+  //   var headerHeight = document.getElementById("header").clientHeight;
+  //   var effectiveH = height - (headerHeight * 4);
+  //   var images = document.getElementsByClassName("image");
+  //   var timer = document.getElementById("timerList");
+  //   var timerText = document.getElementById("timer");
+  //   var spacer = document.getElementById("spacer").style.top;
+  //   spacer = 50;
+
+  //   if(effectiveH > 400) {
+  //     for(i = 0; i < images.length; i++){
+  //       images[i].style.height = effectiveH / 2 + 'px';
+  //       images[i].style.width = (effectiveH / 3) + 'px';
+  //       console.log(spacer);
+  //       timer.style.top = (spacer + (effectiveH /4)) + 'px';
+  //     }
+  //     $scope.resizeTimer(35, timerText);
+  //   } else {
+  //     if((width / 2) >= effectiveH) {
+  //       // Set image sizes by height
+  //       for(i = 0; i < images.length; i++){
+  //         images[i].style.height = effectiveH + 'px';
+  //         images[i].style.width = ((effectiveH / 3)* 2) + 'px';
+  //         timer.style.top = (spacer + (effectiveH / 2)) + 'px';
+  //       }
+  //       if(effectiveH < 200) {
+  //         $scope.resizeTimer(15, timerText);
+  //         console.log(spacer + (effectiveH / 2)); 
+  //       } else{
+  //         $scope.resizeTimer(35, timerText);
+  //       }
+  //     } else {
+  //       // Set image sizes by width
+  //       for(i = 0; i < images.length; i++){
+  //         images[i].style.width = width/6 + 'px';
+  //         images[i].style.height = (width / 6) * 2 + 'px';
+  //         timer.style.top = (spacer + (effectiveH /4)) + 'px';
+  //       }
+  //       $scope.resizeTimer(15, timerText);
+  //     }
+  //     $scope.$apply();
+  //     var margin = (width - 2 * width/6 - timerText.style.width) / 2
+  //     window.onload = function() {  
+  //       document.getElementById("product0").style.marginRight = margin + 'px';
+  //       document.getElementById("product1").style.marginLeft = margin + 'px';
+  //     }
+  //   }
+  //  }
+
+
+
 }]);
+
 
 // app.run(function($ionicPlatform) {
 //   $ionicPlatform.ready(function() {
