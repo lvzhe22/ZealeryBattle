@@ -5,11 +5,14 @@
 // the 2nd parameter is an array of 'requires'
 var app = angular.module('starter', ['ionic']);
 
+// This Controller is connected to the body of the Battle App Page.
+// The user can see the products that they will see in the battle. (Pre-Battle)
+// They will choose between two products for a certain number of moves during the battle. (In-Battle)
+// They will see the new rank of the products after the battle. (Post-Battle)
 app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
 
-  // Pre-Sets
+  // Initial Conditions
   $scope.listItems = 2; // number of products on screen
-  
   $scope.i = 2;
 
   $scope.productList = [ // Proxy List of Products
@@ -18,7 +21,7 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
       image : "img/image1.jpg",
       index : 0,
       count : 0
-    }, 
+    },
 
     productTwo = {
       name : "V-Neck T-Shirt",
@@ -40,22 +43,10 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
       index : 3,
       count : 0
     }
-  ]; 
+  ];
 
-  $scope.displayWhenFinished = {
-    name : "Congratulations!",
-    image : "img/image-1.jpg",
-    index : -1,
-    count : 0
-  };
-
-  $scope.displayWhenFinished2 = {
-    name : "Congratulations!",
-    image : "img/image-1.jpg",
-    index : -2,
-    count : 0
-  };
-
+  // Displays the number of extra products on the Pre-Battle Screen.
+  // Image is pulled from the website who's address can be changed to display a different number.
   $scope.dummyProduct = {
     name: "extra products",
     image: "http://dummyimage.com/150x200/91fffb/fff.png&text=0x2B+" + (+$scope.productList.length - 2),
@@ -65,24 +56,25 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
 
   // HEADER DATA
 
-  // USER DATA
-  $scope.name = "John Doe";
-
-  $scope.profilePicture = "img/image0.jpg";
-
-  $scope.score = 150;
+  $scope.user = {
+    name : "John Doe",
+    profilePicture : "img/image0.jpg",
+    score : 150
+  }
 
   $scope.moves = +$scope.productList.length / 2;
 
   // This function is called when the user taps the exit button in the upper right corner
+  // The Pre-Battle Screen is shown and the moves are reset.
   $scope.exit = function() {
     console.log("exit clicked");
     $scope.battleStarted = false;
     $scope.battleFinished = false;
+    $scope.moves = +$scope.productList.length / 2;
   };
 
   // PRE-BATTLE SCREEN
-  // This function builds an array of products that will be displayed before the battle starts
+  // This function shows the products that will be displayed before the battle starts
   $scope.preBattleScreen = function() {
     $scope.productsInBattle = [2]; // Initialize array of prescreen product display
     if($scope.productList.length < 4) {
@@ -98,20 +90,19 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
     }
   }
 
-  // This function is called to show the battle screen,
-  // hide the prebattle screen and begin the battle clock
+  // This function will show the battle screen, hide the prebattle screen, and begin the battle clock.
+  // It also resets all necesary initial conditions.
   $scope.startBattle = function() {
     $scope.battleStarted = true;
     $scope.battleFinished = false;
     $scope.time = 10;
-    $scope.chooseProducts(0,1);
     $scope.i = 2;
     $scope.moves = +$scope.productList.length / 2;
-    $scope.productsOnScreen = [$scope.productList[0], $scope.productList[1]];
+    $scope.chooseProducts(0,1);
   }
 
-  // This function reduces the battle clock by one each second
-  // while all products have not been cycled through 
+  // This function reduces the battle clock by one each second until all products are cycled through
+  // It also triggers any time-based events
   $interval(function() {
     if(!$scope.battleFinished && $scope.battleStarted) {
       $scope.time = +$scope.time - 1;
@@ -120,7 +111,7 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
           $scope.newMove();
         } else {
           $scope.battleFinished = true;
-          $scope.battleOver();
+          $scope.moveOver();
         }
       }
     }
@@ -135,21 +126,20 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
 
   // This function increases the count of the chosen product by 1 and loads a new set of products to choose from
   // pre: index must be >= 0 and < productList.length
-  // post: A new group of products will be displayed to choose from and the clicked upon product will have a count increased by 1  
+  // post: A new group of products will be displayed to choose from and the clicked upon product will have a count increased by 1
   $scope.update = function(product) {
     var index = $scope.productList.indexOf(product);
     $scope.productList[index].count = (+$scope.productList[index].count + 1);
     console.log("index: " + index + "\n product:" + product.name);
     if($scope.i < $scope.productList.length) {
-      $scope.newMove();     
+      $scope.newMove();
     } else {
-      $scope.battleOver();
       $scope.battleFinished = true;
 
     }
   };
 
-  // This function is called every time a new move begins
+  // This function is called every time a new move begins, it sets the preconditions for each move
   $scope.newMove = function() {
     $scope.time = 10;
     $scope.moves = +$scope.moves - 1;
@@ -157,23 +147,19 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
     $scope.i = (+$scope.i + 2);
   };
 
-  // This function is called every time the player runs out of moves
-  $scope.battleOver = function() {
-    $scope.time = 0;
-    $scope.moves = +$scope.moves - 1;
-    $scope.productsOnScreen = [$scope.displayWhenFinished, $scope.displayWhenFinished2];
-
-  }
-
+  // This function resizes the timer to the width and height of the parameter 'x'
+  // pre: This function assumes that the thickness of the border is 2px
   $scope.resizeTimer = function(x, timer) {
-    //timer.style.fontSize = x + 'px';
-    console.log(x);
     timer.style.height = (x) + 'px';
     timer.style.width = (x) + 'px';
     timer.style.borderRadius = (x) + 'px';
     timer.style.lineHeight = (x - 4) + 'px';
   }
 
+  // This function alters the dimensions of the Content to fit the screen.
+  // pre: All the html objects that are part of the inBattle Screen need to be in the document.
+  //      This flow structure assumes the screen size is one of the standard iOS pixel sizes.
+  //      This function also only works for the inBattle screen.
   $scope.dimensions = function() {
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     var height = (window.innerHeight > 0) ? window.innerHeight : screen.height;
@@ -210,73 +196,9 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
           images[i].style.width = 250 + 'px';
         }
       }
-
     }
-
-
   }
-
-
-
-
-
-
-  // This function allows the images to scale depending on the screen
-  // $scope.dimensions = function() {
-  //   var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-  //   var height = (window.innerHeight > 0) ? window.innerHeight : screen.height;
-  //   var headerHeight = document.getElementById("header").clientHeight;
-  //   var effectiveH = height - (headerHeight * 4);
-  //   var images = document.getElementsByClassName("image");
-  //   var timer = document.getElementById("timerList");
-  //   var timerText = document.getElementById("timer");
-  //   var spacer = document.getElementById("spacer").style.top;
-  //   spacer = 50;
-
-  //   if(effectiveH > 400) {
-  //     for(i = 0; i < images.length; i++){
-  //       images[i].style.height = effectiveH / 2 + 'px';
-  //       images[i].style.width = (effectiveH / 3) + 'px';
-  //       console.log(spacer);
-  //       timer.style.top = (spacer + (effectiveH /4)) + 'px';
-  //     }
-  //     $scope.resizeTimer(35, timerText);
-  //   } else {
-  //     if((width / 2) >= effectiveH) {
-  //       // Set image sizes by height
-  //       for(i = 0; i < images.length; i++){
-  //         images[i].style.height = effectiveH + 'px';
-  //         images[i].style.width = ((effectiveH / 3)* 2) + 'px';
-  //         timer.style.top = (spacer + (effectiveH / 2)) + 'px';
-  //       }
-  //       if(effectiveH < 200) {
-  //         $scope.resizeTimer(15, timerText);
-  //         console.log(spacer + (effectiveH / 2)); 
-  //       } else{
-  //         $scope.resizeTimer(35, timerText);
-  //       }
-  //     } else {
-  //       // Set image sizes by width
-  //       for(i = 0; i < images.length; i++){
-  //         images[i].style.width = width/6 + 'px';
-  //         images[i].style.height = (width / 6) * 2 + 'px';
-  //         timer.style.top = (spacer + (effectiveH /4)) + 'px';
-  //       }
-  //       $scope.resizeTimer(15, timerText);
-  //     }
-  //     $scope.$apply();
-  //     var margin = (width - 2 * width/6 - timerText.style.width) / 2
-  //     window.onload = function() {  
-  //       document.getElementById("product0").style.marginRight = margin + 'px';
-  //       document.getElementById("product1").style.marginLeft = margin + 'px';
-  //     }
-  //   }
-  //  }
-
-
-
 }]);
-
 
 // app.run(function($ionicPlatform) {
 //   $ionicPlatform.ready(function() {
@@ -295,4 +217,3 @@ app.controller('ctrl', ['$scope' , '$interval', function($scope, $interval) {
 //     }
 //   });
 // })
-

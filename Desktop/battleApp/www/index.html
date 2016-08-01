@@ -1,104 +1,105 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>Battle App</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title>Battle App</title>
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
+  <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+  <link href="css/ionic.app.css" rel="stylesheet">
+-->
 
-    <script src="jquery-1.12.4.min.js"></script>
+<script src="jquery-1.12.4.min.js"></script>
 
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
+<!-- ionic/angularjs js -->
+<script src="lib/ionic/js/ionic.bundle.js"></script>
 
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
+<!-- cordova script (this will be a 404 during development) -->
+<script src="cordova.js"></script>
 
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
-  </head>
+<!-- your app's js -->
+<script src="js/app.js"></script>
+</head>
 
-  <body ng-app="starter" ng-controller="ctrl">
-    <ion-pane>
+<body ng-app="starter" ng-controller="ctrl">
+  <ion-pane>
 
     <!-- Below is the HTML Setup for the Header Bar-->
 
-      <ion-header-bar id="header" class="bar-stable">
-        <h1 id="subheader"class="title">
-          <div id="hugLeft">
-            <img src="{{profilePicture}}" id="profPic">
-            <div id="profName"><p>{{name}}</p></div>
-          </div>
-
-          <div id="hugRight">
-            <div id="moves">
-              <p>Moves: {{moves}}</p>
-            </div>
-            <div id="score">
-              <p>Score: {{score}}</p>
-            </div> 
-            <button class="button" id="exitButton" on-tap="exit()">X</button> 
-          </div>
-
-        </h1>
-      </ion-header-bar>
-      
-      <ion-content>
-
-        <!-- Below is the HTML for the In Battle Screen -->
-        <div id="battleScreen" ng-show="battleStarted && !battleFinished">
-          <div id="spacer"></div>
-          <!-- Products in Battle -->
-          <div>
-            <ion-list class="ul">
-              <ion-item class="li" ng-repeat="product in productsOnScreen track by $index" ng-click="update(product)" id="product{{productsOnScreen.indexOf(product)}}">
-                <img src="{{product.image}}" class="inBattleImage">
-                {{dimensions()}}
-              </ion-item>
-            </ion-list>
-          </div>
-          
-          <!--Timer -->
-          <div>
-            <ion-list id="timerList" class="ul">
-              <ion-item id="timer" class="li">
-                {{time}}
-              </ion-item>
-            </ion-list>
-          </div>
+    <ion-header-bar id="header" class="bar-stable">
+      <h1 id="subheader"class="title">
+        <div id="hugLeft">
+          <img src="{{user.profilePicture}}" id="profPic">
+          <div id="profName"><p>{{user.name}}</p></div>
         </div>
 
-        <!-- Below is the HTML for the Pre Battle Screen -->
-        <div ng-show="!battleStarted" style="text-align: center;">
-          {{preBattleScreen()}}
-          <button ng-click="startBattle()" id="startButton">Battlee Start!!</button>
-          <ion-list>
-            <ion-item ng-repeat="product in productsInBattle track by $index" style="display: inline-block">
-              <img src="{{product.image}}" class="preBattleImage">
+        <div id="hugRight">
+          <div id="moves">
+            <p>Moves: {{moves}}</p>
+          </div>
+          <div id="score">
+            <p>Score: {{user.score}}</p>
+          </div>
+          <button class="button" id="exitButton" on-tap="exit()">X</button>
+        </div>
+
+      </h1>
+    </ion-header-bar>
+
+    <ion-content>
+
+      <!-- Below is the HTML for the In Battle Screen -->
+      <div id="battleScreen" ng-show="battleStarted && !battleFinished">
+        <div id="spacer"></div>
+        <!-- Products in Battle -->
+        <div>
+          <ion-list class="ul">
+            <ion-item class="li" ng-repeat="product in productsOnScreen track by $index"
+            ng-click="update(product)" id="product{{productsOnScreen.indexOf(product)}}">
+              <img src="{{product.image}}" class="inBattleImage">
+              {{dimensions()}}
             </ion-item>
           </ion-list>
         </div>
 
-        <!-- Below is the HTML for the Post Battle Screen -->
-        <div ng-show="battleFinished" style="text-align: center;">
-          <div id="spacer"></div>
-          <div>
-            <ion-list>
-              <ion-item ng-repeat="product in productList track by $index">
-                {{product.name}}: {{product.count}}
-              </ion-item>
+        <!--Timer -->
+        <div>
+          <ion-list id="timerList" class="ul">
+            <ion-item id="timer" class="li">
+              {{time}}
+            </ion-item>
           </ion-list>
-          </div>
         </div>
+      </div>
 
-      </ion-content>
-    </ion-pane>
+      <!-- Below is the HTML for the Pre Battle Screen -->
+      <div ng-show="!battleStarted" style="text-align: center;">
+        {{preBattleScreen()}}
+        <button ng-click="startBattle()" id="startButton">Battlee Start!!</button>
+        <ion-list>
+          <ion-item ng-repeat="product in productsInBattle track by $index" style="display: inline-block">
+            <img src="{{product.image}}" class="preBattleImage">
+          </ion-item>
+        </ion-list>
+      </div>
 
-  </body>
+      <!-- Below is the HTML for the Post Battle Screen -->
+      <div ng-show="battleFinished" style="text-align: center;">
+        <div id="spacer"></div>
+        <div>
+          <ion-list>
+            <ion-item ng-repeat="product in productList track by $index">
+              {{product.name}}: {{product.count}}
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+
+    </ion-content>
+  </ion-pane>
+
+</body>
 </html>
